@@ -2,9 +2,17 @@ import React from "react";
 import "./Banner.css";
 const Banner = () => {
   return (
-    <div>
-      <div style={{background : `url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/ecb13f5f-5d9c-4a84-ab3b-22a52394972e/d8rh7in-1d72ccba-8609-463c-80e1-abb12bf12704.jpg') no-repeat center center`, backgroundSize:'cover', padding:'100px 0px',backgroundColor: 'rgba(0.5, 0, 0, 0.60)',
-  backgroundBlendMode: 'multiply'}} class="">
+    <div className="max-w-[1450px] mx-auto">
+      <div
+        style={{
+          background: `url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/ecb13f5f-5d9c-4a84-ab3b-22a52394972e/d8rh7in-1d72ccba-8609-463c-80e1-abb12bf12704.jpg') no-repeat center center`,
+          backgroundSize: "cover",
+          padding: "100px 0px",
+          backgroundColor: "rgba(0.5, 0, 0, 0.60)",
+          backgroundBlendMode: "multiply",
+        }}
+        class=""
+      >
         <div class="mx-auto lg:w-6/12 w-10/12">
           <div className="my-2 mb-16">
             <h1 className="text-6xl text-white mb-2">Welcome</h1>
