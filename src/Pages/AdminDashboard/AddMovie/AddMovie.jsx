@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import NavigationBarPc from "../../../Components/Shared/NavigationBarPc";
 import { Footer } from "../../../Components/Shared/Footer";
-
+import { datalist } from "./Data";
 const AddMovie = () => {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
@@ -57,7 +57,7 @@ const AddMovie = () => {
                   className="border border-2 mb-2 p-2"
                   onChange={(e) => setTitle(e.target.value)}
                   type="text"
-                  placeholder="Enter Blog Title"
+                  placeholder="Enter Movie Or Drama Name"
                   required
                 />
               </div>
@@ -68,22 +68,25 @@ const AddMovie = () => {
                 required
                 className="mb-2 p-2 "
               >
-                <option>Select Travel Category</option>
-                <option value="Family">Family</option>
-                <option value="Single">Single</option>
-                <option value="Friends">Friends</option>
+                <option>Select Category</option>
+                {datalist.categoryList.map((category) => {
+                  return <option>{category}</option>;
+                })}
               </select>
               <br />
 
-              <div>
-                <input
-                  className="border border-2 mb-2 p-2"
-                  onChange={(e) => setAddress(e.target.value)}
-                  type="text"
-                  placeholder="Address  Name"
-                  required
-                />
-              </div>
+              <select
+                onChange={(e) => setCategory(e.target.value)}
+                aria-label="Default select example"
+                required
+                className="mb-2 p-2 "
+              >
+                <option>Select Year</option>
+                {datalist.releaseTimeList.map((year) => {
+                  return <option>{year}</option>;
+                })}
+              </select>
+              <br />
 
               <div>
                 <input
@@ -126,19 +129,9 @@ const AddMovie = () => {
               <div>
                 <input
                   className="border border-2 mb-2 p-2"
-                  onChange={(e) => setSpentDay(e.target.value)}
-                  type="number"
-                  placeholder="Enter Spent Days"
-                  required
-                />
-              </div>
-
-              <div>
-                <input
-                  className="border border-2 mb-2 p-2"
                   onChange={(e) => setCost(e.target.value)}
                   type="number"
-                  placeholder="Enter Travel Cost"
+                  placeholder="Enter Drive Link"
                   required
                 />
               </div>
