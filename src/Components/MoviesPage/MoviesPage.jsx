@@ -1,42 +1,25 @@
-import React, { useEffect, useState } from "react";
-import Banner from "../../Components/Banner/Banner";
-import NavigationBarPc from "../../Components/Shared/NavigationBarPc";
-import RecentMoviesSlider from "../../Components/Slider/RecentMoviesSlider";
-import { Footer } from "../../Components/Shared/Footer";
-import SingleMoviePage from "../../Components/SingleMoviePage/SingleMoviePage";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
-// let slides = [
-//   "https://creativereview.imgix.net/content/uploads/2019/12/joker_full.jpg?auto=compress,format&q=60&w=1012&h=1500",
-//   "https://picsum.photos/800/300/?random",
-//   "https://picsum.photos/800/301/?random",
-//   "https://picsum.photos/800/302/?random",
-//   "https://picsum.photos/800/303/?random",
-//   "https://picsum.photos/800/304/?random",
-// ];
-
-const Home = () => {
+const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
+  const navigate = useNavigate();
+  const params = useParams();
+  console.log(params.genre);
   useEffect(() => {
     axios
       .get(
-        "https://triangle-movies-backend-1nfyntmhl-fahad98723.vercel.app/api/v1/movies/?limit=20"
+        `http://localhost:5000/api/v1/movies/?genres=${params.genre}&limit=20`
       )
       .then((res) => {
         setMovies(res.data.data);
         // console.log(res.data.data);
       });
-  }, []);
-
-  const navigate = useNavigate();
+  }, [params.genre]);
 
   return (
-    <div className=" ">
-      <NavigationBarPc></NavigationBarPc>
-      <Banner></Banner>
-      <RecentMoviesSlider></RecentMoviesSlider>
-
+    <div>
       <div class=" grid grid-cols-3 md:gap-5 gap-2 md:p-10 px-5 py-10  md:gap-y-10 gap-y-2 max-w-[1450px] mx-auto">
         {movies.map((a) => (
           <div
@@ -102,11 +85,8 @@ const Home = () => {
           </div>
         ))}
       </div>
-
-      {/* <div class="min-h-screen grid place-items-center font-mono bg-gray-900"></div> */}
-      <Footer />
     </div>
   );
 };
 
-export default Home;
+export default MoviesPage;

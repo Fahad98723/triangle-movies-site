@@ -29,24 +29,36 @@ const RecentMoviesSlider = () => {
     "https://picsum.photos/800/304/?random",
   ];
 
+  const [recentMovies, setRecentMovies] = useState([]);
+  useEffect(() => {
+    axios
+      .get(
+        "https://triangle-movies-backend-1nfyntmhl-fahad98723.vercel.app/api/v1/movies/?limit=10"
+      )
+      .then((res) => {
+        setRecentMovies(res.data.data);
+        // console.log(res.data.data);
+      });
+  }, []);
+
   const breakPoints = [
     { width: 1, itemsToShow: 1 },
-    { width: 550, itemsToShow: 3 },
-    { width: 1200, itemsToShow: 3 },
+    { width: 550, itemsToShow: 5 },
+    { width: 1200, itemsToShow: 5 },
   ];
 
   return (
-    <div className="slider   py-10 max-w-[1450px] mx-auto">
+    <div className="slider    max-w-[1450px] mx-auto">
       <Carousel
         breakPoints={breakPoints}
         showArrows={true}
-        className="search-header"
+        className="search-header bg-gray-800 px-2 "
         autoPlaySpeed={1500}
         pagination={false}
       >
-        {slides.map((item, key) => (
+        {recentMovies.map((item, key) => (
           <div onClick={() => {}} key={key}>
-            <img src={item} className={`w-full`} alt="" />
+            <img src={item.poster} className={`w-[300px] h-[250px]`} alt="" />
           </div>
         ))}
       </Carousel>

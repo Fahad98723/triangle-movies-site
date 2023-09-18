@@ -1,5 +1,7 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
+import { useParams } from "react-router-dom";
 
 const SingleMoviePage = () => {
   const [infoShow, setInfoShow] = useState(true);
@@ -14,6 +16,26 @@ const SingleMoviePage = () => {
     "https://picsum.photos/800/304/?random",
   ];
 
+  const { id } = useParams();
+  console.log(id);
+
+  const [singleMovie, setSingleMovie] = useState({});
+
+  useEffect(() => {
+    const run = async () => {
+      await axios
+        .get(
+          `https://triangle-movies-backend-1nfyntmhl-fahad98723.vercel.app/api/v1/movies/${id}`
+        )
+        .then((res) => {
+          setSingleMovie(res.data.data);
+        });
+    };
+    run();
+  }, [id]);
+
+  console.log(singleMovie);
+
   return (
     <div>
       <div class=" bg-gray-900 max-w-[1450px] mx-auto">
@@ -21,33 +43,47 @@ const SingleMoviePage = () => {
           <div class="md:flex  leading-none max-w-4xl">
             <div class="flex-none ">
               <img
-                src="https://creativereview.imgix.net/content/uploads/2019/12/joker_full.jpg?auto=compress,format&q=60&w=1012&h=1500"
+                src={singleMovie.poster}
                 alt="pic"
                 class="h-72 w-56 rounded-md shadow-2xl  border-4 border-gray-300 shadow-lg"
               />
             </div>
 
             <div class="flex-col text-gray-300">
-              <p class="pt-4 text-2xl px-4  font-bold">Joker (2020)</p>
+              <p class="pt-4 text-2xl px-4  font-bold">{singleMovie?.title}</p>
 
               <div class="text-md flex justify-between px-4 my-2">
-                <span class="font-bold">2h 2min | Crime, Drama, Thriller</span>
-                <span class="font-bold"></span>
+                <span class="font-bold">
+                  {singleMovie?.runtime} |{" "}
+                  <span class="font-bold md:text-sm text-[10px]">
+                    {singleMovie?.genres?.map((item, key) => (
+                      <span key={key}>
+                        {key + 1 === singleMovie?.genres?.length ? (
+                          <span className="text-[14px] font-normal  ">
+                            {item.toUpperCase()}
+                          </span>
+                        ) : (
+                          <span className="text-[14px] font-normal leading-[24px]">
+                            {item.toUpperCase()},{" "}
+                          </span>
+                        )}
+                      </span>
+                    ))}
+                  </span>
+                </span>
               </div>
-              <p class="hidden md:block px-4 my-4 text-sm text-left">
-                In Gotham City, mentally troubled comedian Arthur Fleck is
-                disregarded and mistreated by society. He then embarks on a
-                downward spiral of revolution and bloody crime. This path brings
-                him face-to-face with his alter-ego: the Joker.{" "}
-              </p>
 
               <p class="flex text-md px-4 my-2">
-                Rating: 9.0/10
+                Rating: {singleMovie?.average_rating}/10
                 <span class="font-bold px-2">|</span>
                 Mood: Dark
               </p>
 
-              <div class="text-xs">
+              <span class="font-bold text-md px-4 my-2">
+                Release Date : {singleMovie.release_date}
+              </span>
+
+              <div class="text-xs px-2 my-2">
                 <button
                   type="button"
                   class="border border-gray-400 text-gray-400 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-gray-900 focus:outline-none focus:shadow-outline"
@@ -118,13 +154,8 @@ const SingleMoviePage = () => {
 
           {infoShow && (
             <div>
-              <p className="text-white text-sm">
-                In Gotham City, mentally troubled comedian Arthur Fleck is
-                disregarded and mistreated by society. He then embarks on a
-                downward spiral of revolution and bloody crime. This path brings
-                him face-to-face with his alter-ego: the Joker.{" "}
-              </p>
-              {slides.slice(0, 3).map((a) => (
+              <p className="text-white text-sm">{singleMovie?.overview}</p>
+              {singleMovie?.screenshots?.slice(0, 3).map((a) => (
                 <img className="my-2" src={a} alt="" />
               ))}
 
@@ -154,7 +185,7 @@ const SingleMoviePage = () => {
                   },
                 },
               }}
-              url={"https://www.youtube.com/watch?v=zAGVQLHvwOY"}
+              url={singleMovie?.trailer}
             />
           )}
           {linkShow && (

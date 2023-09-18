@@ -1,8 +1,20 @@
-@import url("https://fonts.googleapis.com/css2?family=Babylonica&family=Delius+Unicase:wght@700&family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Arvo&family=Dancing+Script&family=Great+Vibes&family=Noto+Serif+Bengali&family=Playfair+Display&family=Poppins&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
   font-family: "Poppins", sans-serif;
+  /* 
+  font-family: "Arvo", serif; 
+  font-family: "Dancing Script", cursive;
+  font-family: "Great Vibes", cursive;
+  font-family: "Noto Serif Bengali", serif;
+  font-family: "Playfair Display", serif;
+  */
+}
+
+.add-movie {
+  font-family: "Playfair Display", serif;
 }

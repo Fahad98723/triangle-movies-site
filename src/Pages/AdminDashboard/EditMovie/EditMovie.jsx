@@ -1,14 +1,47 @@
 import axios from "axios";
-import React, { useState } from "react";
-import NavigationBarPc from "../../../Components/Shared/NavigationBarPc";
-import { Footer } from "../../../Components/Shared/Footer";
+import React, { useEffect, useState } from "react";
 import { datalist } from "./Data";
-import { GiCancel } from "react-icons/gi";
 import AutoComplete from "../../../Components/Shared/AutoComplete";
-import toast from "react-hot-toast";
+import { toast } from "react-hot-toast";
 
-const AddMovie = () => {
-  const [title, setTitle] = useState("");
+const EditMovie = ({ id, setOpenModal, setRefetch }) => {
+  const [singleMovie, setSingleMovie] = useState({});
+
+  useEffect(() => {
+    const run = async () => {
+      await axios
+        .get(
+          `https://triangle-movies-backend-1nfyntmhl-fahad98723.vercel.app/api/v1/movies/${id}`
+        )
+        .then((res) => {
+          setSingleMovie(res.data.data);
+        });
+    };
+    run();
+  }, [id]);
+
+  useEffect(() => {
+    if (singleMovie) {
+      setTitle(singleMovie.title);
+      setCategory(singleMovie.categories);
+      setGenres(singleMovie?.genres);
+      setImage(singleMovie.image);
+      setCost(singleMovie.cost);
+      setDetails(singleMovie.overview);
+      setCastNames(singleMovie.cast);
+      setDirector(singleMovie.director);
+      setDriveLink(singleMovie.link);
+      setPosterLink(singleMovie.poster);
+      setTrailerLink(singleMovie.trailer);
+      setSSLinks(singleMovie.screenshots);
+      setRating(singleMovie.average_rating);
+      setDate(singleMovie.release_date);
+      setRuntime(singleMovie.runtime);
+      setProductionCompanies(singleMovie.production_companies);
+      setProductionCountry(singleMovie.production_countries);
+    }
+  }, [singleMovie]);
+  const [title, setTitle] = useState(singleMovie.title);
   const [category, setCategory] = useState([]);
   const [genres, setGenres] = useState([]);
   const [image, setImage] = useState("");
@@ -30,7 +63,6 @@ const AddMovie = () => {
   const [productionCountry, setProductionCountry] = useState([]);
 
   const handleAddBlog = () => {
-    console.log(date, new Date(date).getFullYear());
     const formData = {
       title: title,
       overview: details,
@@ -49,27 +81,34 @@ const AddMovie = () => {
       production_companies: productionCompanies,
       production_countries: productionCountry,
     };
-
-    console.log(formData);
-    axios
-      .post(
-        "https://triangle-movies-backend-1nfyntmhl-fahad98723.vercel.app/api/v1/movies/add-movie",
-        {
-          movie: formData,
-        }
-      )
-      .then((res) => {
-        toast.success("Movie updated succesfully");
-      });
+    try {
+      axios
+        .patch(
+          `https://triangle-movies-backend-1nfyntmhl-fahad98723.vercel.app/api/v1/movies/${id}`,
+          { movie: formData }
+        )
+        .then((res) => {
+          console.log(res);
+          if (res.data.success === true) {
+            toast.success("Movie updated succesfully");
+            setRefetch(true);
+            setOpenModal(false);
+          }
+        });
+    } catch (error) {
+      console.log(error);
+      toast.error(error);
+    }
   };
+
+  console.log(productionCompanies, productionCountry, "cast names");
 
   return (
     <div>
-      <NavigationBarPc />
       <div className="py-5 max-w-[1450px] mx-auto">
         <div className="heading mb-5">
           <h1 className="text-[25px]  font-bold add-movie">
-            Add New Movie From Here 🎥{" "}
+            Edit Movie From Here 🎥{" "}
           </h1>
         </div>
         <div>
@@ -78,6 +117,7 @@ const AddMovie = () => {
               <input
                 className="border border-2 mb-2 p-2 w-full"
                 onChange={(e) => setTitle(e.target.value)}
+                defaultValue={title}
                 type="text"
                 placeholder="Enter Movie Name"
               />
@@ -88,12 +128,14 @@ const AddMovie = () => {
               placeholder="Select Genre"
               setSelectData={setGenres}
               className={"w-full"}
+              selectedData={genres}
             />
 
             <AutoComplete
               placeholder="Cast Name"
               setSelectData={setCastNames}
               className={"w-full"}
+              selectedData={castNames}
             />
 
             <AutoComplete
@@ -101,18 +143,21 @@ const AddMovie = () => {
               placeholder="Select Category"
               setSelectData={setCategory}
               className={"w-full"}
+              selectedData={category}
             />
 
             <AutoComplete
               placeholder="Production Company"
               setSelectData={setProductionCompanies}
               className={"w-full"}
+              selectedData={productionCompanies}
             />
 
             <AutoComplete
               placeholder="Production Country"
               setSelectData={setProductionCountry}
               className={"w-full"}
+              selectedData={productionCountry}
             />
 
             <div>
@@ -120,6 +165,7 @@ const AddMovie = () => {
                 className="border border-2 mb-2 p-2 w-full"
                 onChange={(e) => setDriveLink(e.target.value)}
                 type="text"
+                defaultValue={driveLink}
                 placeholder="Drive Link"
               />
             </div>
@@ -129,6 +175,7 @@ const AddMovie = () => {
                 className="border border-2 mb-2 p-2 w-full"
                 onChange={(e) => setPosterLink(e.target.value)}
                 type="text"
+                defaultValue={posterLink}
                 placeholder="Poster Link"
               />
             </div>
@@ -138,24 +185,27 @@ const AddMovie = () => {
                 className="border border-2 mb-2 p-2 w-full"
                 onChange={(e) => setTrailerLink(e.target.value)}
                 type="text"
+                defaultValue={trailerLink}
                 placeholder="Trailer Link"
               />
             </div>
 
-            <div className="md:flex">
+            <div className="">
               <input
                 className="border border-2 mb-2 p-2"
                 type="date"
                 name="release-date"
+                value={date}
                 onChange={(e) => {
                   setDate(e.target.value);
                 }}
               />
 
               <input
-                className="border border-2 mb-2 p-2 md:mx-2"
+                className="border border-2 mb-2 p-2 "
                 min="0"
                 max="10"
+                value={rating}
                 onChange={(e) => setRating(e.target.value)}
                 type="number"
                 step=".5"
@@ -163,14 +213,16 @@ const AddMovie = () => {
               />
 
               <input
-                className="border border-2 mb-2 p-2 md:mx-2"
+                className="border border-2 mb-2 p-2 "
                 onChange={(e) => setRuntime(e.target.value)}
+                value={runtime}
                 type="text"
                 placeholder="Run Time"
               />
 
               <input
                 className="border border-2 mb-2 p-2 "
+                defaultValue={director}
                 onChange={(e) => setDirector(e.target.value)}
                 type="text"
                 placeholder="Director  Name"
@@ -181,6 +233,7 @@ const AddMovie = () => {
               placeholder="Enter SS Links"
               setSelectData={setSSLinks}
               className={"w-full"}
+              selectedData={ssLinks}
             />
 
             <div>
@@ -188,6 +241,7 @@ const AddMovie = () => {
                 className="border border-2 mb-2 p-2 w-full"
                 rows={5}
                 placeholder="Movies Overview"
+                defaultValue={details}
                 onChange={(e) => setDetails(e.target.value)}
               />
             </div>
@@ -199,15 +253,13 @@ const AddMovie = () => {
                 handleAddBlog();
               }}
             >
-              Add Movie
+              Update Movie
             </button>
           </div>
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 };
 
-export default AddMovie;
+export default EditMovie;
