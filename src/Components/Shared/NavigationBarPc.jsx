@@ -56,18 +56,15 @@ const NavigationBarPc = () => {
             >
               Movies
             </p>
-            <a
-              href="#responsive-header"
+
+            <p
+              onClick={() => {
+                navigate(`/series`);
+              }}
               class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
             >
-              Tv Shows
-            </a>
-            <a
-              href="#responsive-header"
-              class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
-            >
-              Web Series
-            </a>
+              Series
+            </p>
             <p
               onClick={() => {
                 navigate(`/genre/anime`);
@@ -90,18 +87,15 @@ const NavigationBarPc = () => {
               >
                 Movies
               </p>
-              <a
-                href="#responsive-header"
-                class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
-              >
-                Tv Shows
-              </a>
-              <a
-                href="#responsive-header"
+
+              <p
+                onClick={() => {
+                  navigate(`/sereis`);
+                }}
                 class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
               >
-                Web Series
-              </a>
+                Series
+              </p>
               <p
                 onClick={() => {
                   navigate(`/genre/anime`);
