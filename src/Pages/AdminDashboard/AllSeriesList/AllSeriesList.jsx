@@ -7,8 +7,9 @@ import Modal from "../../../Components/Shared/Modal";
 import EditMovie from "../EditMovie/EditMovie";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import EditSeries from "../EditSeries/EditSeries";
 
-const AllMovie = () => {
+const AllSeriesList = () => {
   const [movies, setMovies] = useState([]);
   const [id, setId] = useState(null);
   const [refetch, setRefetch] = useState(false);
@@ -16,7 +17,7 @@ const AllMovie = () => {
   useEffect(() => {
     axios
       .get(
-        "https://triangle-movies-backend-1nfyntmhl-fahad98723.vercel.app/api/v1/movies/?limit=50"
+        "https://triangle-movies-backend-1nfyntmhl-fahad98723.vercel.app/api/v1/series/?limit=50"
       )
       .then((res) => {
         setMovies(res.data.data);
@@ -27,7 +28,7 @@ const AllMovie = () => {
   const handleDelete = async (id) => {
     await axios
       .delete(
-        `https://triangle-movies-backend-1nfyntmhl-fahad98723.vercel.app/api/v1/movies/${id}`
+        `https://triangle-movies-backend-1nfyntmhl-fahad98723.vercel.app/api/v1/series/${id}`
       )
       .then((res) => {
         if (res.data.success === true) {
@@ -129,7 +130,7 @@ const AllMovie = () => {
                     <div className="flex ">{d?.runtime}</div>
                   </td>
                   <td className="text-[#252733] px-6 py-4 ">
-                    <p className=""> {capitalizeFirst(d?.director)}</p>
+                    {/* <p className=""> {capitalizeFirst(d?.director)}</p> */}
                   </td>
                   <td className="text-[#252733] px-6 py-4  whitespace-nowrap">
                     <p className=""> {d?.average_rating}</p>
@@ -195,7 +196,7 @@ const AllMovie = () => {
 
       <Modal open={openModal} onClose={() => setOpenModal(false)}>
         <div className=" flex flex-col space-y-5  p-5  sm:w-[400px] max-w-[400px] overflow-y-scroll max-h-[400px] bg-white  rounded-lg text-light-black ">
-          <EditMovie
+          <EditSeries
             id={id}
             setOpenModal={setOpenModal}
             setRefetch={setRefetch}
@@ -208,4 +209,4 @@ const AllMovie = () => {
   );
 };
 
-export default AllMovie;
+export default AllSeriesList;

@@ -13,22 +13,18 @@ const AutoComplete = ({
   const [selectedOption, setSelectedOption] = useState(selectedData || null);
   const [show, setShow] = useState(false);
 
-  console.log(selectedData, selectedOption);
-
   useEffect(() => {
     setSelectedOption(selectedData);
   }, [selectedData]);
 
   const handleKeyDown = (event) => {
     if (!options?.length) {
-      console.log(event.key, event.target.value, options?.length);
       if (event.key === "Enter") {
         // Handle Enter key press here
 
         let data = [];
         data.push(event.target.value);
         setSuggestions(data);
-        console.log(data);
       }
     }
   };
@@ -53,10 +49,7 @@ const AutoComplete = ({
     // setSelectedOption(null);
   };
 
-  console.log(suggestions);
-
   const handleSelectOption = (option) => {
-    console.log(option);
     if (selectedOption) {
       setSelectedOption([...selectedOption, option]);
       setSelectData([...selectedOption, option]);
@@ -101,7 +94,6 @@ const AutoComplete = ({
               key={index}
               onClick={(e) => {
                 handleSelectOption(option);
-                console.log(e);
               }}
               className="px-4 py-2 cursor-pointer hover:bg-gray-100"
             >

@@ -3,7 +3,7 @@ import NavigationBarPc from "../../Components/Shared/NavigationBarPc";
 import { Footer } from "../../Components/Shared/Footer";
 import SingleMoviePage from "../../Components/SingleMoviePage/SingleMoviePage";
 
-const SinglePage = () => {
+const SingleMovie = () => {
   return (
     <div>
       <NavigationBarPc />
@@ -13,4 +13,4 @@ const SinglePage = () => {
   );
 };
 
-export default SinglePage;
+export default SingleMovie;

@@ -25,6 +25,7 @@ const genresList = [
   "Action",
   "Adventure",
   "Animation",
+  "Anime",
   "Comedy",
   "Crime",
   "Drama",

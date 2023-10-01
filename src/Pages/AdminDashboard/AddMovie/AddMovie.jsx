@@ -2,10 +2,9 @@ import axios from "axios";
 import React, { useState } from "react";
 import NavigationBarPc from "../../../Components/Shared/NavigationBarPc";
 import { Footer } from "../../../Components/Shared/Footer";
-import { datalist } from "./Data";
-import { GiCancel } from "react-icons/gi";
 import AutoComplete from "../../../Components/Shared/AutoComplete";
 import toast from "react-hot-toast";
+import { datalist } from "../Data/Data";
 
 const AddMovie = () => {
   const [title, setTitle] = useState("");
@@ -59,14 +58,14 @@ const AddMovie = () => {
         }
       )
       .then((res) => {
-        toast.success("Movie updated succesfully");
+        toast.success("Movie uploaded succesfully");
       });
   };
 
   return (
     <div>
       <NavigationBarPc />
-      <div className="py-5 max-w-[1450px] mx-auto">
+      <div className="py-5 max-w-[1450px] mx-auto bg-white p-2">
         <div className="heading mb-5">
           <h1 className="text-[25px]  font-bold add-movie">
             Add New Movie From Here 🎥{" "}

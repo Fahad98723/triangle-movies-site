@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Banner.css";
+import { useNavigate } from "react-router-dom";
 const Banner = () => {
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
   return (
     <div className="max-w-[1450px] mx-auto">
       <div
@@ -29,8 +32,14 @@ const Banner = () => {
                 type="text"
                 placeholder="Enter name search here"
                 class="rounded-full flex-1 px-4 py-2 text-gray-700 focus:outline-none"
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                }}
               />
               <button
+                onClick={() => {
+                  navigate(`/movies/search/${search}`);
+                }}
                 type="submit"
                 class="bg-indigo-500 text-white rounded-full font-semibold px-8 py-4 hover:bg-indigo-400 focus:bg-indigo-600 focus:outline-none"
               >

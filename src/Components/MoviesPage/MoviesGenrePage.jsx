@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-const MoviesPage = () => {
+const MoviesGenrePage = () => {
   const [movies, setMovies] = useState([]);
   const navigate = useNavigate();
   const params = useParams();
@@ -10,11 +10,11 @@ const MoviesPage = () => {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:5000/api/v1/movies/?genres=${params.genre}&limit=20`
+        `https://triangle-movies-backend.vercel.app/api/v1/movies/?genres=${params.genre}&limit=20`
       )
       .then((res) => {
         setMovies(res.data.data);
-        // console.log(res.data.data);
+        console.log(res.data);
       });
   }, [params.genre]);
 
@@ -24,7 +24,7 @@ const MoviesPage = () => {
         {movies.map((a) => (
           <div
             onClick={() => {
-              navigate(`/movie/${a._id}`);
+              navigate(`/movie/${a.url}`);
             }}
             class="rounded-md bg-gray-800 shadow-lg group cursor-pointer py-3"
           >
@@ -89,4 +89,4 @@ const MoviesPage = () => {
   );
 };
 
-export default MoviesPage;
+export default MoviesGenrePage;

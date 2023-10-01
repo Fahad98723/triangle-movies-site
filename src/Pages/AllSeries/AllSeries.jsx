@@ -1,16 +1,16 @@
 import React from "react";
 import NavigationBarPc from "../../Components/Shared/NavigationBarPc";
 import { Footer } from "../../Components/Shared/Footer";
-import MoviesGenrePage from "../../Components/MoviesPage/MoviesGenrePage";
+import AllSeriesPage from "../../Components/AllSeriesPage/AllSeriesPage";
 
-const MoviesGenre = () => {
+const AllSeries = () => {
   return (
     <div>
       <NavigationBarPc />
-      <MoviesGenrePage />
+      <AllSeriesPage />
       <Footer />
     </div>
   );
 };
 
-export default MoviesGenre;
+export default AllSeries;

@@ -10,13 +10,12 @@ import SocialButton from "../Shared/SocialButton";
 import { generatedTextToUrl } from "../utils/utils";
 import { datalist } from "../../Pages/AdminDashboard/Data/Data";
 import toast from "react-hot-toast";
-const SingleMoviePage = () => {
+const SingleSeriesPage = () => {
   const [infoShow, setInfoShow] = useState(true);
   const [linkShow, setLinkShow] = useState(false);
   const [trailerShow, setTrailerShow] = useState(false);
 
   const { url } = useParams();
-  console.log(url, "url");
 
   const [singleMovie, setSingleMovie] = useState({});
 
@@ -25,14 +24,15 @@ const SingleMoviePage = () => {
       try {
         await axios
           .get(
-            `https://triangle-movies-backend.vercel.app/api/v1/movies/url/${url}`
+            `https://triangle-movies-backend.vercel.app/api/v1/series/url/${url}`
           )
           .then((res) => {
             console.log(res);
             setSingleMovie(res.data.data);
           });
       } catch (error) {
-        toast.error(error.message);
+        // toast.error(error.message);
+        console.log(error);
       }
     };
     run();
@@ -62,7 +62,7 @@ const SingleMoviePage = () => {
   useEffect(() => {
     axios
       .get(
-        "https://triangle-movies-backend-1nfyntmhl-fahad98723.vercel.app/api/v1/movies/?limit=10"
+        "https://triangle-movies-backend-1nfyntmhl-fahad98723.vercel.app/api/v1/series/?limit=10"
       )
       .then((res) => {
         setRecentMovies(res.data.data);
@@ -263,22 +263,60 @@ const SingleMoviePage = () => {
               />
             )}
             {linkShow && (
-              <button
-                onClick={() => {
-                  window.location.href = `${singleMovie?.link}`;
-                }}
-                class="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
-              >
-                <svg
-                  class="inline-block w-4 h-4 mr-2"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M9 2.5L15 6v8l-6 3.5V2.5zM3 17h12a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H3a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z" />
-                </svg>
-                Download Now
-              </button>
+              <>
+                {singleMovie?.seriesid ? (
+                  <>
+                    {singleMovie?.seasons?.map((season) => (
+                      <div>
+                        <div class="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 my-1 px-4 rounded">
+                          Season {season.number}
+                        </div>
+
+                        <div>
+                          {season?.zipfile.map((zip) => (
+                            <>
+                              <button
+                                onClick={() => {
+                                  window.location.href = `${zip?.link}`;
+                                }}
+                                class="bg-gray-900 hover:bg-gray-700 my-1 text-white font-bold py-2 px-4 rounded"
+                              >
+                                <svg
+                                  class="inline-block w-4 h-4 mr-2"
+                                  fill="currentColor"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 20 20"
+                                >
+                                  <path d="M9 2.5L15 6v8l-6 3.5V2.5zM3 17h12a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H3a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z" />
+                                </svg>
+                                {zip?.caption}
+                              </button>
+                              <br />
+                            </>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </>
+                ) : (
+                  <button
+                    onClick={() => {
+                      window.location.href = `${singleMovie?.link}`;
+                    }}
+                    class="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+                  >
+                    <svg
+                      class="inline-block w-4 h-4 mr-2"
+                      fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9 2.5L15 6v8l-6 3.5V2.5zM3 17h12a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H3a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z" />
+                    </svg>
+                    Download Now
+                  </button>
+                )}
+              </>
             )}
 
             <SocialButton />
@@ -311,4 +349,4 @@ const SingleMoviePage = () => {
   );
 };
 
-export default SingleMoviePage;
+export default SingleSeriesPage;

@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { datalist } from "./Data";
 import AutoComplete from "../../../Components/Shared/AutoComplete";
 import { toast } from "react-hot-toast";
+import { datalist } from "../Data/Data";
 
 const EditMovie = ({ id, setOpenModal, setRefetch }) => {
   const [singleMovie, setSingleMovie] = useState({});
@@ -25,8 +25,7 @@ const EditMovie = ({ id, setOpenModal, setRefetch }) => {
       setTitle(singleMovie.title);
       setCategory(singleMovie.categories);
       setGenres(singleMovie?.genres);
-      setImage(singleMovie.image);
-      setCost(singleMovie.cost);
+      setUrl(singleMovie?.url);
       setDetails(singleMovie.overview);
       setCastNames(singleMovie.cast);
       setDirector(singleMovie.director);
@@ -46,7 +45,7 @@ const EditMovie = ({ id, setOpenModal, setRefetch }) => {
   const [genres, setGenres] = useState([]);
   const [image, setImage] = useState("");
   // const [thumb, setThumb] = useState(null);
-  const [cost, setCost] = useState("");
+  const [url, setUrl] = useState("");
   const [details, setDetails] = useState("");
   const [castNames, setCastNames] = useState([]);
   const [director, setDirector] = useState("");
@@ -80,6 +79,7 @@ const EditMovie = ({ id, setOpenModal, setRefetch }) => {
       trailer: trailerLink,
       production_companies: productionCompanies,
       production_countries: productionCountry,
+      url: url || null,
     };
     try {
       axios
@@ -187,6 +187,16 @@ const EditMovie = ({ id, setOpenModal, setRefetch }) => {
                 type="text"
                 defaultValue={trailerLink}
                 placeholder="Trailer Link"
+              />
+            </div>
+
+            <div>
+              <input
+                className="border border-2 mb-2 p-2 w-full"
+                onChange={(e) => setUrl(e.target.value)}
+                type="text"
+                defaultValue={url}
+                placeholder="Movie Path Url"
               />
             </div>
 
