@@ -9,7 +9,7 @@ const AllSeriesPage = () => {
     try {
       axios
         .get(
-          "https://triangle-movies-backend-1nfyntmhl-fahad98723.vercel.app/api/v1/series/?limit=21"
+          "https://triangle-movies-backend.vercel.app/api/v1/series/?limit=21"
         )
         .then((res) => {
           setSeries(res.data.data);

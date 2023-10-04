@@ -10,9 +10,7 @@ const EditMovie = ({ id, setOpenModal, setRefetch }) => {
   useEffect(() => {
     const run = async () => {
       await axios
-        .get(
-          `https://triangle-movies-backend-1nfyntmhl-fahad98723.vercel.app/api/v1/movies/${id}`
-        )
+        .get(`https://triangle-movies-backend.vercel.app/api/v1/movies/${id}`)
         .then((res) => {
           setSingleMovie(res.data.data);
         });
@@ -84,7 +82,7 @@ const EditMovie = ({ id, setOpenModal, setRefetch }) => {
     try {
       axios
         .patch(
-          `https://triangle-movies-backend-1nfyntmhl-fahad98723.vercel.app/api/v1/movies/${id}`,
+          `https://triangle-movies-backend.vercel.app/api/v1/movies/${id}`,
           { movie: formData }
         )
         .then((res) => {

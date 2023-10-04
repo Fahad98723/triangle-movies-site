@@ -50,16 +50,20 @@ const AddMovie = () => {
     };
 
     console.log(formData);
-    axios
-      .post(
-        "https://triangle-movies-backend-1nfyntmhl-fahad98723.vercel.app/api/v1/movies/add-movie",
-        {
-          movie: formData,
-        }
-      )
-      .then((res) => {
-        toast.success("Movie uploaded succesfully");
-      });
+    try {
+      axios
+        .post(
+          "https://triangle-movies-backend.vercel.app/api/v1/movies/add-movie",
+          {
+            movie: formData,
+          }
+        )
+        .then((res) => {
+          toast.success("Movie uploaded succesfully");
+        });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

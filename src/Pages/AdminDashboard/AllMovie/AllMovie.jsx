@@ -15,9 +15,7 @@ const AllMovie = () => {
 
   useEffect(() => {
     axios
-      .get(
-        "https://triangle-movies-backend-1nfyntmhl-fahad98723.vercel.app/api/v1/movies/?limit=50"
-      )
+      .get("https://triangle-movies-backend.vercel.app/api/v1/movies/?limit=50")
       .then((res) => {
         setMovies(res.data.data);
         setRefetch(false);
@@ -26,9 +24,7 @@ const AllMovie = () => {
 
   const handleDelete = async (id) => {
     await axios
-      .delete(
-        `https://triangle-movies-backend-1nfyntmhl-fahad98723.vercel.app/api/v1/movies/${id}`
-      )
+      .delete(`https://triangle-movies-backend.vercel.app/api/v1/movies/${id}`)
       .then((res) => {
         if (res.data.success === true) {
           toast.success("Removed successfully");

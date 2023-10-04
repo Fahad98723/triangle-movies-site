@@ -10,6 +10,8 @@ import SocialButton from "../Shared/SocialButton";
 import { generatedTextToUrl } from "../utils/utils";
 import { datalist } from "../../Pages/AdminDashboard/Data/Data";
 import toast from "react-hot-toast";
+
+import PulokBhai from "./PulokBhai";
 const SingleMoviePage = () => {
   const [infoShow, setInfoShow] = useState(true);
   const [linkShow, setLinkShow] = useState(false);
@@ -61,9 +63,7 @@ const SingleMoviePage = () => {
   const [recentMovies, setRecentMovies] = useState([]);
   useEffect(() => {
     axios
-      .get(
-        "https://triangle-movies-backend-1nfyntmhl-fahad98723.vercel.app/api/v1/movies/?limit=10"
-      )
+      .get("https://triangle-movies-backend.vercel.app/api/v1/movies/?limit=10")
       .then((res) => {
         setRecentMovies(res.data.data);
         // console.log(res.data.data);
@@ -302,7 +302,7 @@ const SingleMoviePage = () => {
             ))}
           </div>
         </div>
-
+        {/* <PulokBhai /> */}
         <div className="my-5">
           <RecentMoviesSlider recentMovies={recentMovies} />
         </div>

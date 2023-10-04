@@ -37,9 +37,7 @@ const EditSeries = ({ id, setOpenEditModal, setRefetch }) => {
   useEffect(() => {
     const run = async () => {
       await axios
-        .get(
-          `https://triangle-movies-backend-1nfyntmhl-fahad98723.vercel.app/api/v1/series/${id}`
-        )
+        .get(`https://triangle-movies-backend.vercel.app/api/v1/series/${id}`)
         .then((res) => {
           setSingleSeries(res.data.data);
         });

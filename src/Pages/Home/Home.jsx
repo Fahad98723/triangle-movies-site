@@ -13,7 +13,7 @@ const Home = () => {
   useEffect(() => {
     axios
       .get(
-        "https://triangle-movies-backend-1nfyntmhl-fahad98723.vercel.app/api/v1/movies/?limit=21"
+        "https://triangle-movies-backend.vercel.app/api/v1/movies/?limit=21&sortBy=release_date&sortOrder=desc"
       )
       .then((res) => {
         setMovies(res.data.data);
@@ -24,9 +24,7 @@ const Home = () => {
   const [series, setSeries] = useState([]);
   useEffect(() => {
     axios
-      .get(
-        "https://triangle-movies-backend-1nfyntmhl-fahad98723.vercel.app/api/v1/series/?limit=21"
-      )
+      .get("https://triangle-movies-backend.vercel.app/api/v1/series/?limit=21")
       .then((res) => {
         setSeries(res.data.data);
         // console.log(res.data.data);
@@ -39,7 +37,7 @@ const Home = () => {
   useEffect(() => {
     axios
       .get(
-        "https://triangle-movies-backend-1nfyntmhl-fahad98723.vercel.app/api/v1/movies/?sortBy=release_date&sortOrder=desc&limit=10"
+        "https://triangle-movies-backend.vercel.app/api/v1/movies/?sortBy=release_date&sortOrder=desc&limit=10"
       )
       .then((res) => {
         setRecentMovies(res.data.data);

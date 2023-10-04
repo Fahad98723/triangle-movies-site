@@ -7,7 +7,7 @@ const MoviesCategoryPage = () => {
   const [movies, setMovies] = useState([]);
   const navigate = useNavigate();
   const params = useParams();
-  console.log(params.categories);
+  console.log(generatedUrlToText(params.categories));
   useEffect(() => {
     axios
       .get(

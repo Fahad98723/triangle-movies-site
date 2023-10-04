@@ -61,9 +61,7 @@ const SingleSeriesPage = () => {
   const [recentMovies, setRecentMovies] = useState([]);
   useEffect(() => {
     axios
-      .get(
-        "https://triangle-movies-backend-1nfyntmhl-fahad98723.vercel.app/api/v1/series/?limit=10"
-      )
+      .get("https://triangle-movies-backend.vercel.app/api/v1/series/?limit=10")
       .then((res) => {
         setRecentMovies(res.data.data);
         // console.log(res.data.data);

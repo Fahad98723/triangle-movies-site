@@ -22,7 +22,7 @@ export const generatedUrlToText = (str) => {
     .trim()
     .toLowerCase()
     .replaceAll("-", " ")
-    .replace("and", /&/g)
+    .replace(/&/g, "and")
     .replaceAll("-", "?")
     .replaceAll("%2B", "+")
     .replaceAll("-or-", "/");
