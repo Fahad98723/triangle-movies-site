@@ -12,6 +12,7 @@ import { datalist } from "../../Pages/AdminDashboard/Data/Data";
 import toast from "react-hot-toast";
 
 import PulokBhai from "./PulokBhai";
+import useScreenWidth from "../utils/useScreenWidth";
 const SingleMoviePage = () => {
   const [infoShow, setInfoShow] = useState(true);
   const [linkShow, setLinkShow] = useState(false);
@@ -71,6 +72,7 @@ const SingleMoviePage = () => {
   }, []);
 
   const navigate = useNavigate();
+  const { screenWidth } = useScreenWidth();
 
   return (
     <div>
@@ -248,7 +250,7 @@ const SingleMoviePage = () => {
             )}
             {trailerShow && (
               <ReactPlayer
-                width="500px"
+                width={`${screenWidth > 768 ? "500px" : "100%"}`}
                 height={"300px"}
                 config={{
                   youtube: {
