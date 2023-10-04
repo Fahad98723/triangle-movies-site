@@ -75,20 +75,21 @@ const NavigationBarPc = () => {
             </p>
           </div>
         </div>
+      </div>
 
-        {toggle && (
-          <div class="w-full block flex-grow lg:flex block lg:hidden lg:items-center lg:w-auto">
-            <div class="text-sm lg:flex-grow">
-              <p
-                onClick={() => {
-                  navigate(`/movies`);
-                }}
-                class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
-              >
-                Movies
-              </p>
+      {toggle && (
+        <div class="w-full block p-2 flex-grow lg:flex block lg:hidden lg:items-center lg:w-auto">
+          <div class="text-sm lg:flex-grow">
+            <p
+              onClick={() => {
+                navigate(`/movies`);
+              }}
+              class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+            >
+              Movies
+            </p>
 
-              {/* <p
+            {/* <p
                 onClick={() => {
                   navigate(`/sereis`);
                 }}
@@ -96,19 +97,18 @@ const NavigationBarPc = () => {
               >
                 Series
               </p> */}
-              <p
-                onClick={() => {
-                  navigate(`/genre/anime`);
-                }}
-                class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
-              >
-                Anime
-              </p>
-            </div>
-            <div></div>
+            <p
+              onClick={() => {
+                navigate(`/genre/anime`);
+              }}
+              class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+            >
+              Anime
+            </p>
           </div>
-        )}
-      </div>
+          <div></div>
+        </div>
+      )}
     </div>
   );
 };
