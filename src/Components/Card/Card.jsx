@@ -50,11 +50,11 @@ const Card = ({ movie }) => {
               <span class="font-bold px-2 md:inline hidden ">|</span>
               <p className="my-1"> {movie?.release_date}</p>
             </div>
-            <p class="flex md:text-[12px] md:px-4 px-1 text-[10px] my-2">
+            <p class="flex md:text-[12px] md:block hidden md:px-4 px-1 text-[10px] my-2">
               Director: {movie.director}
             </p>
 
-            <div class="text-xs md:block hidden">
+            {/* <div class="text-xs md:block hidden">
               <button
                 type="button"
                 class="border border-gray-400 text-gray-400 md:rounded-md rounded md:px-2 px-1 md:py-2  md:m-2 m-[2px] text-[8px] transition duration-500 ease select-none hover:bg-gray-900 focus:outline-none focus:shadow-outline"
@@ -75,7 +75,7 @@ const Card = ({ movie }) => {
               >
                 AMAZON
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

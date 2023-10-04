@@ -55,9 +55,9 @@ const Home = () => {
         {movies.map((movie) => (
           <Card movie={movie} />
         ))}
-        {series.map((movie) => (
+        {/* {series.map((movie) => (
           <Card movie={movie} />
-        ))}
+        ))} */}
       </div>
       <Footer />
     </div>
