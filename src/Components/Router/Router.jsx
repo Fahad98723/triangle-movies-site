@@ -11,6 +11,7 @@ import AllSeriesList from "../../Pages/AdminDashboard/AllSeriesList/AllSeriesLis
 import SingleMovie from "../../Pages/SinglePage/SingleMovie";
 import SingleSeries from "../../Pages/SinglePage/SingleSeries";
 import AllSeries from "../../Pages/AllSeries/AllSeries";
+import React from "react";
 
 export const router = createBrowserRouter([
   {

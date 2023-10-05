@@ -92,7 +92,7 @@ const AllMovie = () => {
                   className="bg-white border-b border-light-gray cursor-pointer transition duration-300 ease-in-out hover:bg-light-gray items-center"
                 >
                   <td
-                    className={`px-6 py-4 pr-8  whitespace-nowrap  text-[#252733]
+                    className={`px-6 py-4 pr-8    text-[#252733]
                   `}
                   >
                     <div className="flex items-center ">
@@ -109,7 +109,7 @@ const AllMovie = () => {
                         </div>
                       )}
                       <div className="">
-                        <p className={` `}>{d?.title}</p>
+                        <p className={` w-[180px] `}>{d?.title}</p>
                       </div>
                     </div>
                   </td>
@@ -134,7 +134,7 @@ const AllMovie = () => {
                     <p className=""> {d?.url}</p>
                   </td> */}
                   <td className="text-[#252733] px-6 py-4  ">
-                    {d?.link?.slice(0, 100)}
+                    {d?.link?.slice(0, 50)}
                   </td>
                   <td className="text-[#252733] px-6 py-4   flex items-center">
                     <button

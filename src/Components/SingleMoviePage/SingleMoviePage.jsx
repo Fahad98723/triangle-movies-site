@@ -10,16 +10,16 @@ import SocialButton from "../Shared/SocialButton";
 import { generatedTextToUrl } from "../utils/utils";
 import { datalist } from "../../Pages/AdminDashboard/Data/Data";
 import toast from "react-hot-toast";
-
-import PulokBhai from "./PulokBhai";
 import useScreenWidth from "../utils/useScreenWidth";
+import { ScrollToTop } from "../utils/ScrollToTop";
 const SingleMoviePage = () => {
   const [infoShow, setInfoShow] = useState(true);
   const [linkShow, setLinkShow] = useState(false);
   const [trailerShow, setTrailerShow] = useState(false);
 
   const { url } = useParams();
-  console.log(url, "url");
+
+  console.log(url, "check url ");
 
   const [singleMovie, setSingleMovie] = useState({});
 
@@ -41,8 +41,6 @@ const SingleMoviePage = () => {
     run();
   }, [url]);
 
-  console.log(singleMovie);
-
   const location = useLocation();
 
   function parsePath(url) {
@@ -51,6 +49,7 @@ const SingleMoviePage = () => {
     if (pathSegments.length >= 2) {
       const firstSegment = pathSegments[0];
       const restOfPath = pathSegments.slice(1).join("/");
+      console.log(restOfPath.replaceAll("%2B", "+"), "router");
       return [firstSegment, `${firstSegment}/${restOfPath}`];
     } else {
       return ["Invalid path"];
@@ -76,6 +75,7 @@ const SingleMoviePage = () => {
 
   return (
     <div>
+      <ScrollToTop />
       <div class=" bg-gray-900 max-w-[1450px] mx-auto">
         <div class=" rounded-md bg-gray-800 shadow-lg p-4 md:flex">
           <div className="md:w-[70%]">
@@ -164,14 +164,14 @@ const SingleMoviePage = () => {
                   Director : {singleMovie?.director}
                 </p>
 
-                <div class="text-xs md:px-2 my-2">
+                {/* <div class="text-xs md:px-2 my-2">
                   <button
                     type="button"
                     class="border border-gray-400 text-gray-400 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-gray-900 focus:outline-none focus:shadow-outline"
                   >
                     IMDB
                   </button>
-                </div>
+                </div> */}
               </div>
             </div>
 
