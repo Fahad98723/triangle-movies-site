@@ -51,7 +51,7 @@ const Home = () => {
       <Banner></Banner>
       <RecentMoviesSlider recentMovies={recentMovies}></RecentMoviesSlider>
 
-      <div class=" grid grid-cols-3 md:gap-5 gap-2 md:p-10 px-5 py-10  md:gap-y-10 gap-y-2 max-w-[1450px] mx-auto">
+      <div class=" grid lg:grid-cols-3 md:grid-cols-2 grid-cols-3 md:gap-5 gap-2 md:p-10 px-5 py-10  md:gap-y-10 gap-y-2 max-w-[1450px] mx-auto">
         {movies.map((movie) => (
           <Card movie={movie} />
         ))}

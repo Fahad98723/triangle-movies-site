@@ -224,7 +224,7 @@ const SingleMoviePage = () => {
                 <p className="text-white text-sm">{singleMovie?.overview}</p>
                 {singleMovie?.screenshots?.slice(0, 3).map((a) => (
                   <img
-                    className="my-2 md:w-[400px] md:h-[220px]"
+                    className="my-2 md:w-[400px] md:min-h-[220px]"
                     src={a}
                     alt=""
                   />
@@ -232,7 +232,7 @@ const SingleMoviePage = () => {
 
                 <button
                   onClick={() => {
-                    window.location.href = `${singleMovie?.link}`;
+                    window.open(singleMovie?.link, "_blank");
                   }}
                   class="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
                 >
@@ -267,7 +267,7 @@ const SingleMoviePage = () => {
             {linkShow && (
               <button
                 onClick={() => {
-                  window.location.href = `${singleMovie?.link}`;
+                  window.open(singleMovie?.link, "_blank");
                 }}
                 class="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
               >

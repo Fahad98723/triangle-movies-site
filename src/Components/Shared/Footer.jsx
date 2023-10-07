@@ -35,14 +35,14 @@ export const Footer = () => {
           </a>
           <div className="mt-6 lg:max-w-sm">
             <p className="text-sm text-white">
-              Contact or Report Anything Here Email : mlwbdhelp@gmail.com
+              Contact or Report Anything Here Email : blackshadow98723@gmail.com
             </p>
             <p className="mt-4 text-sm text-white">
-              MLWBD does not rip or host any files on it’s servers. All files or
-              contents hosted on third party websites. MLWBD doesn't accept the
-              responsibility for contents hosted on third party websites. Also
-              MLWBD doesn't RIP/Pirate any file. We just collect links from
-              other websites. Nothing Else.
+              Triangle Movies does not rip or host any files on it’s servers.
+              All files or contents hosted on third party websites. Triangle
+              Movies doesn't accept the responsibility for contents hosted on
+              third party websites. Also Triangle Movies doesn't RIP/Pirate any
+              file. We just collect links from other websites. Nothing Else.
             </p>
           </div>
         </div>
@@ -53,36 +53,23 @@ export const Footer = () => {
           <div className="flex">
             <p className="mr-1 text-white">Phone:</p>
             <a
-              href="tel:850-123-5021"
+              href="tel:8801865233836"
               aria-label="Our phone"
               title="Our phone"
               className="transition-colors duration-300 text-deep-purple-accent-400 hover:text-deep-purple-800"
             >
-              850-123-5021
+              880-1865233836
             </a>
           </div>
           <div className="flex">
             <p className="mr-1 text-white">Email:</p>
             <a
-              href="mailto:info@lorem.mail"
+              href="mailto:blackshadow98723@gmail.com"
               aria-label="Our email"
               title="Our email"
               className="transition-colors duration-300 text-deep-purple-accent-400 hover:text-deep-purple-800"
             >
-              info@lorem.mail
-            </a>
-          </div>
-          <div className="flex">
-            <p className="mr-1 text-white">Address:</p>
-            <a
-              href="https://www.google.com/maps"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Our address"
-              title="Our address"
-              className="transition-colors duration-300 text-deep-purple-accent-400 hover:text-deep-purple-800"
-            >
-              312 Lovely Street, NY
+              blackshadow98723@gmail.com
             </a>
           </div>
         </div>
@@ -90,11 +77,6 @@ export const Footer = () => {
           <span className="text-base   text-white">Social</span>
 
           <SocialButton />
-
-          <p className="mt-4 text-sm text-white">
-            Bacon ipsum dolor amet short ribs pig sausage prosciutto chicken
-            spare ribs salami.
-          </p>
         </div>
       </div>
       <div className="flex flex-col-reverse justify-between pt-5 pb-10 border-t lg:flex-row">

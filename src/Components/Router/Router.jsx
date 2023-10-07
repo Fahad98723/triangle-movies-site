@@ -12,6 +12,7 @@ import SingleMovie from "../../Pages/SinglePage/SingleMovie";
 import SingleSeries from "../../Pages/SinglePage/SingleSeries";
 import AllSeries from "../../Pages/AllSeries/AllSeries";
 import React from "react";
+import NotFoundPage from "../../Pages/NotFoundPage/NotFoundPage";
 
 export const router = createBrowserRouter([
   {
@@ -69,5 +70,9 @@ export const router = createBrowserRouter([
   {
     path: "admin-dashboard/all-series",
     element: <AllSeriesList />,
+  },
+  {
+    path: "*",
+    element: <NotFoundPage />,
   },
 ]);
