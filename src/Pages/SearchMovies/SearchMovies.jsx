@@ -5,20 +5,33 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Card from "../../Components/Card/Card";
 import NoData from "../NoData/NoData";
+import { ScrollToTop } from "../../Components/utils/ScrollToTop";
 
 const SearchMovies = () => {
   const params = useParams();
   console.log(params);
   const [movies, setMovies] = useState([]);
+  const [totalCount, setTotalCount] = useState(0);
+  const [paginationButtons, setPaginationButtons] = useState([]);
+  const [limit, setLimit] = useState(21);
+  const [page, setPage] = useState(1);
+
   useEffect(() => {
     axios
       .get(
-        `https://triangle-movies-backend.vercel.app/api/v1/movies/?searchName=${params.search}&limit=20`
+        `https://triangle-movies-backend.vercel.app/api/v1/movies/?searchName=${params.search}&limit=${limit}&page=${page}`
       )
       .then((res) => {
         setMovies(res.data.data);
+        setTotalCount(res?.meta?.total);
+        console.log(res?.data?.meta?.total, "data");
+        setPaginationButtons(Math.round(res?.data?.meta?.total / limit));
       });
-  }, [params.search]);
+  }, [params.search, limit, page]);
+
+  const handlePagination = (e) => {
+    setPage(e + 1);
+  };
 
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
@@ -26,11 +39,38 @@ const SearchMovies = () => {
   return (
     <div>
       <NavigationBarPc />
+      <ScrollToTop />
       {movies.length ? (
-        <div className=" grid grid-cols-3 md:gap-5 gap-2 md:p-10 px-5 py-10  md:gap-y-10 gap-y-2 max-w-[1450px] mx-auto">
-          {movies.map((movie) => (
-            <Card movie={movie} />
-          ))}
+        <div className="max-w-[1450px] mx-auto md:p-10 px-5 py-10">
+          <div className=" grid grid-cols-3 md:gap-5 gap-2   md:gap-y-10 gap-y-2 ">
+            {movies.map((movie) => (
+              <Card movie={movie} />
+            ))}
+          </div>
+
+          <div>
+            {paginationButtons > 0 ? (
+              <div className="my-5 flex gap-2 ">
+                {[...Array(paginationButtons)].map((elementInArray, index) => (
+                  <p
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handlePagination(index);
+                    }}
+                    className={`px-2 py-1 rounded ${
+                      index === page - 1
+                        ? "text-black bg-white"
+                        : "text-white border-white"
+                    }  border-2 cursor-pointer w-fit text-[14px] `}
+                  >
+                    {index + 1}
+                  </p>
+                ))}
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
         </div>
       ) : (
         <>
