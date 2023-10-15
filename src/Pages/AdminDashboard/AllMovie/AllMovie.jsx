@@ -12,15 +12,20 @@ const AllMovie = () => {
   const [movies, setMovies] = useState([]);
   const [id, setId] = useState(null);
   const [refetch, setRefetch] = useState(false);
+  const [search, setSearch] = useState("");
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     axios
-      .get("https://triangle-movies-backend.vercel.app/api/v1/movies/?limit=50")
+      .get(
+        `https://triangle-movies-backend.vercel.app/api/v1/movies/?limit=50&searchName=${search}`
+      )
       .then((res) => {
         setMovies(res.data.data);
+        setTotal(res.data.meta.total);
         setRefetch(false);
       });
-  }, [refetch]);
+  }, [refetch, search]);
 
   const handleDelete = async (id) => {
     await axios
@@ -41,6 +46,17 @@ const AllMovie = () => {
     <div>
       <NavigationBarPc />
       <div className="py-5 max-w-[1450px] mx-auto">
+        <div className="text-white text-[20px] my-2">
+          <p>Total Movies {total}</p>
+          <input
+            type="text"
+            placeholder="Search by name"
+            className="border-2 border-white px-1 py-2 rounded"
+            onChange={(e) => {
+              setSearch(e.target.value);
+            }}
+          />
+        </div>
         <div class="overflow-x-auto md:block hidden space-x-8">
           <table class="table-auto ">
             <thead class="border-b border-light-gray  uppercase text-gray bg-gray-50">

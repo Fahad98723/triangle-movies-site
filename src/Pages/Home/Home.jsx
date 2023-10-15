@@ -36,9 +36,7 @@ const Home = () => {
   const [recentMovies, setRecentMovies] = useState([]);
   useEffect(() => {
     axios
-      .get(
-        "https://triangle-movies-backend.vercel.app/api/v1/movies/?sortBy=rating&sortOrder=desc&limit=10"
-      )
+      .get("https://triangle-movies-backend.vercel.app/api/v1/movies/?limit=10")
       .then((res) => {
         setRecentMovies(res.data.data);
         // console.log(res.data.data);

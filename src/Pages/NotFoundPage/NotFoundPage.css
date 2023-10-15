@@ -3,7 +3,7 @@
 =======================*/
 
 .page_404 {
-  background: #fff;
+  background-color: #152020;
   font-family: "Arvo", serif;
 }
 
@@ -12,11 +12,13 @@
 }
 
 .four_zero_four_bg {
-  background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+  background-image: url("../../assets/notfound.gif");
   height: 400px;
+  background-color: #152020;
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
+  color: #fff;
 }
 
 .four_zero_four_bg h1 {
@@ -36,4 +38,5 @@
 }
 .contant_box_404 {
   margin-top: -50px;
+  color: #fff;
 }

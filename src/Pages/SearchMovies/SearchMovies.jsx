@@ -25,7 +25,7 @@ const SearchMovies = () => {
         setMovies(res.data.data);
         setTotalCount(res?.meta?.total);
         console.log(res?.data?.meta?.total, "data");
-        setPaginationButtons(Math.round(res?.data?.meta?.total / limit));
+        setPaginationButtons(Math.round(res?.data?.meta?.count / limit));
       });
   }, [params.search, limit, page]);
 
