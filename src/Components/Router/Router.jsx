@@ -56,6 +56,10 @@ export const router = createBrowserRouter([
     element: <SearchMovies />,
   },
   {
+    path: "movies/search/",
+    element: <SearchMovies />,
+  },
+  {
     path: "admin-dashboard/add-movie",
     element: <AddMovie />,
   },
