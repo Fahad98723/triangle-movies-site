@@ -16,16 +16,24 @@ const SearchMovies = () => {
   const [limit, setLimit] = useState(21);
   const [page, setPage] = useState(1);
 
+  console.log(
+    `https://triangle-movies-backend.vercel.app/api/v1/movies/?${`${
+      params?.search?.length ? `searchName=${params?.search}&` : ""
+    }`}limit=${limit}&page=${page}`
+  );
+
   useEffect(() => {
     axios
       .get(
-        `https://triangle-movies-backend.vercel.app/api/v1/movies/?searchName=${params.search}&limit=${limit}&page=${page}`
+        `https://triangle-movies-backend.vercel.app/api/v1/movies/?${`${
+          params?.search?.length ? `searchName=${params?.search}&` : ""
+        }`}limit=${limit}&page=${page}`
       )
       .then((res) => {
         setMovies(res.data.data);
         setTotalCount(res?.meta?.total);
-        console.log(res?.data?.meta?.total, "data");
-        setPaginationButtons(Math.round(res?.data?.meta?.count / limit));
+        console.log(res?.data?.meta?.total, res.data.data, "data");
+        setPaginationButtons(Math.ceil(res?.data?.meta?.count / limit));
       });
   }, [params.search, limit, page]);
 

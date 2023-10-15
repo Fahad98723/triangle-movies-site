@@ -69,9 +69,17 @@ const NavigationBarPc = () => {
               onClick={() => {
                 navigate(`/genre/anime`);
               }}
-              class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+              class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
             >
               Anime
+            </p>
+            <p
+              onClick={() => {
+                navigate(`/categories/bollywood-hindi`);
+              }}
+              class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+            >
+              Bollywood Hindi
             </p>
           </div>
         </div>
@@ -101,9 +109,17 @@ const NavigationBarPc = () => {
               onClick={() => {
                 navigate(`/genre/anime`);
               }}
-              class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+              class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white "
             >
               Anime
+            </p>
+            <p
+              onClick={() => {
+                navigate(`/categories/bollywood-hindi`);
+              }}
+              class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+            >
+              Bollywood Hindi
             </p>
           </div>
           <div></div>
