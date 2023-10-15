@@ -21,7 +21,7 @@ const AllMoviesPage = () => {
           setMovies(res?.data?.data);
           setTotalCount(res?.meta?.total);
           console.log(res?.data?.meta?.total);
-          setPaginationButtons(Math.round(res?.data?.meta?.total / limit));
+          setPaginationButtons(Math.ceil(res?.data?.meta?.total / limit));
           console.log(res);
         });
     } catch (error) {
