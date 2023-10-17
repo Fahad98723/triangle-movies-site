@@ -21,6 +21,18 @@ const Home = () => {
       });
   }, []);
 
+  const [movies2, setMovies2] = useState([]);
+  useEffect(() => {
+    axios
+      .get(
+        "https://triangle-movies-backend.vercel.app/api/v1/movies/?limit=21&page=2&sortBy=release_date&sortOrder=desc"
+      )
+      .then((res) => {
+        setMovies2(res.data.data);
+        // console.log(res.data.data);
+      });
+  }, []);
+
   const [series, setSeries] = useState([]);
   useEffect(() => {
     axios
@@ -51,6 +63,9 @@ const Home = () => {
 
       <div class=" grid lg:grid-cols-3 md:grid-cols-2 grid-cols-3 md:gap-5 gap-2 md:p-10 px-5 py-10  md:gap-y-10 gap-y-2 max-w-[1450px] mx-auto">
         {movies.map((movie) => (
+          <Card movie={movie} />
+        ))}
+        {movies2.map((movie) => (
           <Card movie={movie} />
         ))}
         {/* {series.map((movie) => (

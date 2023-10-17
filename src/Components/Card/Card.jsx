@@ -25,32 +25,32 @@ const Card = ({ movie }) => {
           </div>
 
           <div class="flex-col md:pt-4 pt-[-15px] text-gray-300">
-            <p class=" md:text-[20px] text-[12px] md:font-bold">
+            <p class="  lg:text-[16px]    text-[12px] md:font-bold">
               {movie.title} {`(${movie?.release_year})`}
             </p>
             <hr class="hr-text md:my-0 my-1" data-content="" />
-            <div class="text-md md:flex  md:px-4 px-1 md:my-2 my-1">
-              <p class="md:font-bold md:text-sm text-[10px]">
-                {movie.runtime} <span className="md:inline hidden">|</span>{" "}
+            <div class=" lg:flex  lg:px-2 px-1 items-center lg:my-2 my-1">
+              <p class="lg:font-bold lg:text-[11px] text-[8px]">
+                {movie.runtime} <span className="lg:inline hidden">|</span>{" "}
               </p>
-              <div className="md:ml-1">
+              <div className="lg:ml-1">
                 {movie.genres.slice(0, 2).map((a, i) => (
-                  <span className="md:text-sm text-[10px]">
+                  <span className="lg:text-[11px] text-[10px]">
                     {a} {i < 1 ? "," : ""}{" "}
                   </span>
                 ))}
               </div>
             </div>
-            <p class="hidden md:block px-4 my-4 text-sm text-left">
+            <p class="hidden md:block px-2 my-3 text-[16px] leading-[20px] text-left">
               {movie.overview.slice(0, 130)}
             </p>
 
-            <div class="md:flex items-center md:text-[12px] md:px-4 px-1 text-[10px] md:my-2 my-1">
+            <div class="md:flex items-center md:text-[12px] md:px-2 px-1 text-[10px] md:my-2 my-1">
               <p className="">Rating: {movie.average_rating}</p>
               <span class="font-bold px-2 md:inline hidden ">|</span>
               <p className="my-1"> {movie?.release_date}</p>
             </div>
-            <p class="flex md:text-[12px] md:block hidden md:px-4 px-1 text-[10px] my-2">
+            <p class="flex md:text-[12px] md:block hidden md:px-2 px-1 text-[10px] my-2">
               Director: {movie.director}
             </p>
 
